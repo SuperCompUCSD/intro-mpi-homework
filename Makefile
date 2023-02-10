@@ -3,7 +3,7 @@ OBJS = main.o
 CC = gcc
 DEBUG = -g
 WARN = -Wall -Wextra
-CFLAGS = -std=gnu11 $(DEBUG) $(WARN)
+CFLAGS = -std=gnu11 -O2 $(DEBUG) $(WARN)
 LIBS = -lm
 .PHONY: clean run
 
