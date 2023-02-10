@@ -1,9 +1,9 @@
 # UCSD-supercomputing-MPI-intro-homework
 
-Given the below Cartiod and circle inequalities given the by functions below
+Given the below cartiod and circle inequalities given the by functions below
 ![Cartioid](https://github.com/Kwaitv/UCSD-supercomputing-MPI-intro-homework/blob/main/cartiod.jpg)
 
-and using the Serial Code provided in this repository ustilize MPI inorder for this code to run across multiple processes (it need not be an arbitrary number but that'd be nice).
+and using the Serial Code provided in this repository utilize MPI in order for this code to run across multiple processes (it need not be an arbitrary number but that'd be nice).
 
 The code merely implements a montecarlo simulation inorder to approximage the ratio between the area of the cartioid and the circle.
 
