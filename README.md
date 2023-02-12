@@ -10,3 +10,5 @@ The code merely implements a monte carlo simulation inorder to approximate the r
 I advise you read some of the example codes in LLNL's [MPI excersize 1](https://hpc-tutorials.llnl.gov/mpi/exercise_1/) page. And for more in depth reading here is the standard docs for [mpi4.0](https://www.mpi-forum.org/docs/mpi-4.0/mpi40-report.pdf). for a less verbose and dense thing t reference the [OpenMpi docs](https://www.open-mpi.org/doc/v4.1/) all the avaliable functions you have for the MPI specification.
 
 If you want you may translate this serial code to other languages such as `rust` or `c++` and use their mpi language bindings
+
+A Good way to verify if your code is computing the right values is to get the point count for the circle and divide by the four times the number of iterations to approximate pi.
