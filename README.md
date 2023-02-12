@@ -1,4 +1,4 @@
-# UCSD-supercomputing-MPI-intro-homework
+# intro mpi homework
 
 Given the below cartiod and circle inequalities given the by functions below
 ![Cartioid](https://github.com/Kwaitv/UCSD-supercomputing-MPI-intro-homework/blob/main/cartiod.jpg)
