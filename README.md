@@ -11,4 +11,4 @@ I advise you read some of the example codes in LLNL's [MPI excersize 1](https://
 
 If you want you may translate this serial code to other languages such as `rust` or `c++` and use their mpi language bindings
 
-A Good way to verify if your code is computing the right values is to get the point count for the circle and divide by the four times the number of iterations to approximate pi.
+A Good way to verify if your code is computing the right values is to get four times the point count for the circle and divide by the the number of iterations to approximate pi.
