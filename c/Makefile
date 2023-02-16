@@ -6,7 +6,7 @@ WARN = -Wall -Wextra
 CFLAGS = -std=gnu11 -O3 $(DEBUG) $(WARN)
 LIBS = -lm
 EXECDIR = /tmp/$(USER)
-.PHONY: clean run single_node multi_node
+.PHONY: clean run single_node multi_node dist runscript
 
 $(EXE) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS)
@@ -15,22 +15,29 @@ $(EXECDIR):
 	mkdir $(EXECDIR)
 	ssh b 'mkdir $(EXECDIR)'
 	ssh c 'mkdir $(EXECDIR)'
+hosts:
+	echo 'localhost\n10.0.1.14\n10.0.1.16' | tee hosts
 
 $(EXECDIR)/$(EXE): $(EXECDIR) $(EXE)
 	cp $(EXE) $(EXECDIR)
 	scp $(EXE) 'b:$(EXECDIR)/'
 	scp $(EXE) 'c:$(EXECDIR)/'
+dist: $(EXECDIR)/$(EXE) hosts runscript
 
-run: $(EXE) $(EXECDIR)
-	$(EXECDIR)/$(EXE)
+runscript: hosts $(EXECDIR) $(EXE)
+	echo '#!/usr/bin/bash\nmpirun -hostfile hosts $(EXECDIR)/$(EXE) $$@' | tee run
+	chmod +x run
 
-single_node: $(EXECDIR)/$(EXE)
+run: $(EXE)
+	$(EXE)
+
+single_node: dist
 	mpirun $(EXECDIR)/$(EXE)
 
-multi_node: $(EXECDIR)/$(EXE)
-	mpirun -hostfile hos $(EXECDIR)/$(EXE)
+multi_node: dist
+	mpirun -hostfile hosts $(EXECDIR)/$(EXE)
 
 clean:
-	rm -rf $(EXE) $(OBJS) $(EXECDIR)
+	rm -rf $(EXE) $(OBJS) $(EXECDIR) hosts run
 	ssh b 'rm -rf $(EXECDIR)'
 	ssh c 'rm -rf $(EXECDIR)'
