@@ -16,7 +16,7 @@ $(EXECDIR):
 	ssh b 'mkdir $(EXECDIR)'
 	ssh c 'mkdir $(EXECDIR)'
 hosts:
-	echo 'localhost\n10.0.1.14\n10.0.1.16' | tee hosts
+	echo -e 'localhost\n10.0.1.14\n10.0.1.16' | tee hosts
 
 $(EXECDIR)/$(EXE): $(EXECDIR) $(EXE)
 	cp $(EXE) $(EXECDIR)
@@ -25,7 +25,7 @@ $(EXECDIR)/$(EXE): $(EXECDIR) $(EXE)
 dist: $(EXECDIR)/$(EXE) hosts runscript
 
 runscript: hosts $(EXECDIR) $(EXE)
-	echo '#!/usr/bin/bash\nmpirun -hostfile hosts $(EXECDIR)/$(EXE) $$@' | tee run
+	echo -e '#!/usr/bin/bash\nmpirun -hostfile hosts $(EXECDIR)/$(EXE) $$@' | tee run
 	chmod +x run
 
 run: $(EXE)
